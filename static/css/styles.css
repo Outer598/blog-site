@@ -1,0 +1,85 @@
+body{
+    background-color: antiquewhite;
+    margin: 0px;
+}
+
+nav{
+    background-image: url('../img/bg.jpg');
+    background-size: cover;
+    height: 150px;
+    padding: 10px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+nav ul{
+    list-style: none;
+    position: relative;
+    left: 20%;
+    top: 60%;
+    grid-row: 1;
+    grid-column: 1;
+}
+
+nav ul li{
+    display: inline-block;
+    margin: 10px;
+}
+
+.login{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    left: 50%;
+    top: 60%;
+    display: inline-block;
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.login ul li{
+    text-decoration: none;
+    color: black;
+}
+
+.login ul{
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    padding: 6px;
+    top: 40px; 
+    left: -10%;
+    width: 100px;
+    list-style: none;
+}
+.login img{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.login:hover ul{
+    display: block;
+}
+
+nav ul a, .login ul a{
+    text-decoration: none;
+    color: black;
+}
+
+
+.blog{
+    margin: 40px;
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+}
