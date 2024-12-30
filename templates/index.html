@@ -8,10 +8,11 @@
 </head>
 <body>
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
+        <ul class="navigation-page">
+            <li><a href="index.html" class="bold">Home</a></li>
+            <li><a href="post.html">Posts</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
         </ul>
         <div class="login">
             <img src="../static/img/progile.png" alt="profile-pic">
@@ -25,8 +26,9 @@
     <div class="blog">
         <h2>Title</h2>
         <summary>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut repellendus et esse? Ex doloribus aliquid ea culpa cumque praesentium repellendus, molestias obcaecati deserunt modi, mollitia perferendis. Modi ad eum cupiditate!</summary>
-        <a href="">read more</a>
+        <a href="./blog.html">read more</a>
     </div>
     {%endfor%}
+    <script src="../static/scripts/index.js"></script>
 </body>
 </html>

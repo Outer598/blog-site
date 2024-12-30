@@ -23,11 +23,6 @@ nav ul{
     grid-column: 1;
 }
 
-nav ul li{
-    display: inline-block;
-    margin: 10px;
-}
-
 .login{
     width: 100px;
     height: 100px;
@@ -66,7 +61,7 @@ nav ul li{
     display: block;
 }
 
-nav ul a, .login ul a{
+.navigation-page a, .login ul a{
     text-decoration: none;
     color: black;
 }
@@ -82,4 +77,76 @@ nav ul a, .login ul a{
     left: 50%;
     transform: translateX(-50%);
     background-color: white;
+}
+
+.bold{
+    font-weight: bold;
+    background-color: black;
+    border-radius: 5px;
+    width: 100px;
+    padding: 7px;
+}
+
+
+.navigation-page li{
+    display: inline-block;
+    text-align: center;
+    margin: 20px;
+    padding: 0px;
+}
+
+.navigation-page li a{
+    color: white;
+}
+
+.about{
+    margin: 40px;
+    position: relative;
+    left: 40%;
+    transform: translateX(-40%);
+    width: 70%;
+    margin-bottom: 10px;
+}
+.about img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    grid-column: 1;
+    grid-row: 1;
+    display: inline-block;
+}
+
+.about h4{
+    font-size: 20px;
+    display: inline-block;
+    position: absolute;
+    top: -10px;
+    left: 70px;
+}
+
+.content{
+    margin: 40px;
+    position: relative;
+    left: 40%;
+    transform: translateX(-40%);
+    width: 70%;
+    margin-bottom: 10px;
+}
+
+.content time{
+    font-style: italic;
+    font-weight: normal;
+    margin: 10px;
+}
+
+.content h1{
+    font-size: 20px;
+    text-align: justify;
+    margin: 10px;
+}
+
+.content p{
+    font-size: 15px;
+    text-align: justify;
+    margin: 10px;
 }
