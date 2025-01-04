@@ -8,6 +8,9 @@ $(document).ready(function() {
         $(".edit-blog").removeClass("hidden");
         $("nav, .posts").addClass("blur");
     });
+    for (var i = 0; i < 9; i++){
+        $(".blog:first").clone().appendTo(".blog-container");
+    }
 
     $(".write-new").on("click", function() {
         $(".new-blog").removeClass("hidden");
