@@ -1,6 +1,8 @@
 var navigationOptions = $(".navigation-page a");
 var editButton = $(".edit");
 
+var currentPage = window.location.pathname;
+
 $(document).ready(function() {
     highlightCurrentPage();
 
@@ -8,8 +10,11 @@ $(document).ready(function() {
         $(".edit-blog").removeClass("hidden");
         $("nav, .posts").addClass("blur");
     });
-    for (var i = 0; i < 9; i++){
-        $(".blog:first").clone().appendTo(".blog-container");
+    
+    homePage();
+
+    if (currentPage === '/blog'){
+        blogPage();
     }
 
     $(".write-new").on("click", function() {
@@ -76,4 +81,55 @@ function highlightCurrentPage(){
     } else if (currentPage === '/templates/post.html') {
         navigationOptions[1].classList.add("bold");
     }
+}
+
+function homePage(){
+    $.ajax({
+        url: '/api/blogs',
+        type: 'GET',
+        contentType: 'application/json',
+        success: function(response){
+            responseLength = response.length;
+
+            $(".blog h2").text(response[0].title);
+            $(".blog summary").text(response[0].synopsis);
+            $(".blog a").attr('id', `${response[0].id}`);
+            for (var i = 1; i < responseLength; i++){
+                let latestBlog = $(".blog").clone();
+
+                $('.blog h2').text(response[i].title);
+                $(".blog summary").text(response[i].synopsis);
+                $(".blog a").attr('id', `${response[i].id}`);
+                $(".blog-container").append(latestBlog);
+            }
+            $('.blog a').on('click', function(e) {
+                e.preventDefault();
+                var blog_id = this.id;
+                window.location.href = `/blog?id=${blog_id}`;
+            });
+
+        },
+        error: function(xhr, status, error){
+            console.log("Error: " + error)
+        }
+    });
+}
+
+function blogPage(){
+    var blogId = new URLSearchParams(window.location.search).get('id');
+
+    $.ajax({
+        url: `/api/blog?id=${blogId}`,
+        type: 'GET',
+        contentType: 'application/json',
+        success: function(response){
+            $(".content h1").text(response.title);
+            $(".content time").text(response.created_at);
+            $(".content p").text(response.content);
+            $(".about h4").text(`Author - ${response.Author}`);
+        },
+        error: function(xhr, status, error){
+            console.log('error: ' + error)
+        }
+    });
 }

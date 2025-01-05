@@ -1,9 +1,9 @@
 from flask import Flask, render_template
 from model.blog import db
-from routes.signup import userApi
-from routes.login import loginApi
-from routes.blogs import blogApi
-from routes.search import searchApi
+from routes.signup import *
+from routes.login import *
+from routes.blogs import *
+from routes.search import *
 import flask_smorest
 import pymysql
 from dotenv import load_dotenv, dotenv_values
@@ -30,6 +30,9 @@ app.config["OPENAPI_REDOC_URL"] = "https://cdn.jsdelivr.net/npm/redoc/bundles/re
 api = flask_smorest.Api(app)
 
 db.init_app(app)
+
+app.register_blueprint(blogs)
+
 
 api.register_blueprint(userApi)
 api.register_blueprint(loginApi)

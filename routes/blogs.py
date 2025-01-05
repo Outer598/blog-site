@@ -2,14 +2,18 @@ from flask import Blueprint, render_template, request, redirect, url_for, jsonif
 from flask_smorest import Blueprint as SmorestBlueprint
 from flask.views import MethodView
 from model.blog import *
-import requests
+
 
 blogs = Blueprint('blogs', __name__)
 blogApi = SmorestBlueprint('blogApi', 'blogApi', url_prefix='/api', description='API for blogs')
 
-# @blogs.route('/blogs')
-# def home():
-#     return render_template('index.html')
+@blogs.route('/')
+def home():
+    return render_template('index.html')
+
+@blogs.route('/blog')
+def blogPost():
+    return render_template('blog.html')
 
 
 @blogApi.route('/blogs')
@@ -74,3 +78,16 @@ class UDblog(MethodView):
             error = str(e)
             return jsonify({"message": "Error Deleting Blog", "error": error}),500
     
+
+@blogApi.route('/blog')
+class oneItemReturned(MethodView):
+    def get(self):
+        id = request.args.get('id')
+        post = Blog.query.filter_by(id = id).first()
+
+        if post == None:
+            return jsonify({"message": "Blog Not Found"}), 404
+        
+        author = Blog.query.join(User, Blog.user_id == User.id).filter(Blog.id == post.user_id).with_entities(User.user_name, User.last_name, User.first_name).first()
+        authorName = author[1].title() + ' ' + author[2].title() + '-' + author[0] 
+        return jsonify({'id': post.id, 'title': post.title, 'synopsis': post.synopsis, "content": post.content, "created_at": post.created_at, "Author": authorName})
